@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>FuelTrack — Información</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    :root{--bg:#f8eddc;--card:#ffffff;--accent:#bfeadf;--title:#2f6f6a;--muted:#333;}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--muted);padding:30px;display:flex;justify-content:center;}
+    .container{width:100%;max-width:1000px;background:var(--card);padding:28px;border-radius:6px;box-shadow:0 6px 20px rgba(0,0,0,0.12);position:relative;}
+    .logo-small{position:absolute;right:18px;top:18px;width:72px;height:auto;opacity:0.95}
+    h1{color:var(--title);margin:8px 0 12px}
+    h2{color:var(--title);margin:18px 0 8px;font-size:18px}
+    p{margin:6px 0 10px;line-height:1.5}
+    ul{margin:6px 0 10px;padding-left:18px}
+    .row{display:flex;gap:18px;flex-wrap:wrap}
+    .card-box{background:var(--accent);padding:14px;border-radius:6px;flex:1;min-width:220px}
+    .charts{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px}
+    .chart{background:#fff;border:1px solid #eee;padding:12px;border-radius:6px;flex:1;min-width:260px}
+    .placeholder-img{width:100%;height:140px;background:#eee;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#999;margin-top:8px}
+    footer{margin-top:18px;font-size:13px;color:#666}
+    /* simple responsive */
+    @media (max-width:720px){.row{flex-direction:column}.charts{flex-direction:column}}
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <img class="logo-small" src="logo.jpeg" alt="FuelTrack logo">
+
+    <h1>FuelTrack</h1>
+    <p>FuelTrack es una aplicación web para gestionar y optimizar el consumo de combustible en flotas vehiculares, permitiendo control por vehículo, registro de facturas y generación de reportes para la toma de decisiones.</p>
+
+    <h2>Qué ofrece</h2>
+    <ul>
+      <li>Registro centralizado de consumo por vehículo y factura.</li>
+      <li>Reportes automáticos (diarios, semanales, mensuales).</li>
+      <li>Informes y gráficas para analizar tendencias y detectar desperdicio.</li>
+    </ul>
+
+    <h2>Servicios</h2>
+    <ul>
+      <li>Ingreso y edición de registros por roles (supervisor, administrador, gerente).</li>
+      <li>Exportación de reportes (CSV / PDF).</li>
+      <li>Alertas por consumos anómalos y panel de control.</li>
+    </ul>
+
+    <h2>Ventajas y desventajas</h2>
+    <div class="row">
+      <div class="card-box">
+        <strong>Ventajas</strong>
+        <ul>
+          <li>Reducción de costos por mejor control.</li>
+          <li>Visibilidad por vehículo y por periodo.</li>
+          <li>Informes automáticos y fáciles de interpretar.</li>
+        </ul>
+      </div>
+      <div class="card-box">
+        <strong>Desventajas</strong>
+        <ul>
+          <li>Requiere disciplina en el registro de facturas.</li>
+          <li>Dependencia inicial de la configuración y adopción por el equipo.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Antes / Después — Ahorro estimado</h2>
+    <div class="charts">
+      <div class="chart">
+        <strong>Consumo mensual por vehículo (litros)</strong>
+        <!-- SVG barras comparativas: antes (rojo) / después (verde) -->
+        <svg width="100%" height="140" viewBox="0 0 300 140" preserveAspectRatio="none" style="display:block;margin-top:8px">
+          <!-- ejes -->
+          <rect x="0" y="0" width="300" height="140" fill="transparent"></rect>
+          <!-- barras antes -->
+          <rect x="30" y="40" width="40" height="80" fill="#e07a7a"></rect>
+          <rect x="90" y="25" width="40" height="95" fill="#e07a7a"></rect>
+          <rect x="150" y="55" width="40" height="65" fill="#e07a7a"></rect>
+          <!-- barras despues -->
+          <rect x="30" y="70" width="40" height="50" fill="#6bbf9a"></rect>
+          <rect x="90" y="52" width="40" height="68" fill="#6bbf9a"></rect>
+          <rect x="150" y="82" width="40" height="38" fill="#6bbf9a"></rect>
+          <!-- etiquetas -->
+          <text x="50" y="135" font-size="10" text-anchor="middle" fill="#333">Veh A</text>
+          <text x="110" y="135" font-size="10" text-anchor="middle" fill="#333">Veh B</text>
+          <text x="170" y="135" font-size="10" text-anchor="middle" fill="#333">Veh C</text>
+          <text x="240" y="20" font-size="11" fill="#e07a7a">Antes</text>
+          <text x="240" y="36" font-size="11" fill="#6bbf9a">Después</text>
+        </svg>
+        <p style="font-size:13px;margin:8px 0 0;color:#666">Ejemplo ilustrativo: reducción promedio del 30% tras implementación.</p>
+      </div>
+
+      <div class="chart">
+        <strong>Tendencia total (litros)</strong>
+        <!-- línea simple -->
+        <svg width="100%" height="140" viewBox="0 0 300 140" preserveAspectRatio="none" style="display:block;margin-top:8px">
+          <polyline points="10,120 50,95 90,82 130,70 170,60 210,48 250,40 290,35" fill="none" stroke="#e07a7a" stroke-width="3" opacity="0.8"/>
+          <polyline points="10,120 50,110 90,106 130,100 170,96 210,90 250,86 290,80" fill="none" stroke="#6bbf9a" stroke-width="3"/>
+          <text x="12" y="18" font-size="11" fill="#e07a7a">Antes</text>
+          <text x="12" y="32" font-size="11" fill="#6bbf9a">Después</text>
+        </svg>
+        <p style="font-size:13px;margin:8px 0 0;color:#666">Gráfica de ejemplo: tendencia de consumo total antes y después.</p>
+      </div>
+    </div>
+
+    <h2>¿A quién está dirigida?</h2>
+    <p>Empresas de transporte y logística, escuelas de conducción y cualquier organización con flotas vehiculares que busque optimizar costos y controlar el uso de combustible.</p>
+
+    <h2>Imágenes</h2>
+    <div class="row">
+      <div style="flex:1;min-width:220px">
+        <div class="placeholder-img">Imagen de flota (relleno)</div>
+      </div>
+      <div style="flex:1;min-width:220px">
+        <div class="placeholder-img">Dashboard (relleno)</div>
+      </div>
+    </div>
+
+    <footer>
+      <strong>Contacto:</strong> contacto@fueltrack.app · fueltrack.app · +57 300 000 0000
+    </footer>
+  </div>
+</body>
+</html>
