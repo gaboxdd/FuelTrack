@@ -14,14 +14,27 @@
     h2{color:var(--title);margin:18px 0 8px;font-size:18px}
     p{margin:6px 0 10px;line-height:1.5}
     ul{margin:6px 0 10px;padding-left:18px}
-    .row{display:flex;gap:18px;flex-wrap:wrap}
-    .card-box{background:var(--accent);padding:14px;border-radius:6px;flex:1;min-width:220px}
+    /* layout: left wide column (advantages + text) + right column (charts / image) */
+    .row{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap}
+    /* alinear contenido de la columna izquierda hacia la izquierda */
+    .left-col{flex:1.6;min-width:260px;display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+    .left-col h2,.left-col p{text-align:left}
+    .right-col{flex:1;min-width:300px;display:flex;flex-direction:column;gap:18px;justify-content:flex-start}
+    .card-box{background:var(--accent);padding:18px;border-radius:6px;min-height:120px;max-width:520px;text-align:center}
     .charts{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px}
     .chart{background:#fff;border:1px solid #eee;padding:12px;border-radius:6px;flex:1;min-width:260px}
     .placeholder-img{width:100%;height:140px;background:#eee;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#999;margin-top:8px}
+    .top-right-image{position:absolute;top:120px;right:36px;z-index:6;display:flex;justify-content:center;align-items:center}
+    .top-right-image img{display:block;max-width:200px;width:100%;height:auto;border-radius:6px;border:1px solid #eee;box-shadow:0 6px 18px rgba(0,0,0,0.06);}
+    .side-image{max-width:220px;}
     footer{margin-top:18px;font-size:13px;color:#666}
-    /* simple responsive */
-    @media (max-width:720px){.row{flex-direction:column}.charts{flex-direction:column}}
+    @media (max-width:720px){
+      .row{flex-direction:column}
+      .charts{flex-direction:column}
+      /* En pantallas pequeñas, colocamos la imagen dentro del flujo en la parte superior del right-col */
+      .top-right-image{position:static;margin:0 auto 0;display:block}
+      .top-right-image img{max-width:160px}
+    }
   </style>
 </head>
 <body>
@@ -46,79 +59,89 @@
       <li>Alertas por consumos anómalos y panel de control.</li>
     </ul>
 
-    <h2>Ventajas y desventajas</h2>
+    <h2>Ventajas</h2>
+
+    <!-- ROW: izquierda (texto) + derecha (imagen + gráficas) -->
     <div class="row">
-      <div class="card-box">
-        <strong>Ventajas</strong>
-        <ul>
-          <li>Reducción de costos por mejor control.</li>
-          <li>Visibilidad por vehículo y por periodo.</li>
-          <li>Informes automáticos y fáciles de interpretar.</li>
-        </ul>
-      </div>
-      <div class="card-box">
-        <strong>Desventajas</strong>
-        <ul>
-          <li>Requiere disciplina en el registro de facturas.</li>
-          <li>Dependencia inicial de la configuración y adopción por el equipo.</li>
-        </ul>
-      </div>
-    </div>
 
-    <h2>Antes / Después — Ahorro estimado</h2>
-    <div class="charts">
-      <div class="chart">
-        <strong>Consumo mensual por vehículo (litros)</strong>
-        <!-- SVG barras comparativas: antes (rojo) / después (verde) -->
-        <svg width="100%" height="140" viewBox="0 0 300 140" preserveAspectRatio="none" style="display:block;margin-top:8px">
-          <!-- ejes -->
-          <rect x="0" y="0" width="300" height="140" fill="transparent"></rect>
-          <!-- barras antes -->
-          <rect x="30" y="40" width="40" height="80" fill="#e07a7a"></rect>
-          <rect x="90" y="25" width="40" height="95" fill="#e07a7a"></rect>
-          <rect x="150" y="55" width="40" height="65" fill="#e07a7a"></rect>
-          <!-- barras despues -->
-          <rect x="30" y="70" width="40" height="50" fill="#6bbf9a"></rect>
-          <rect x="90" y="52" width="40" height="68" fill="#6bbf9a"></rect>
-          <rect x="150" y="82" width="40" height="38" fill="#6bbf9a"></rect>
-          <!-- etiquetas -->
-          <text x="50" y="135" font-size="10" text-anchor="middle" fill="#333">Veh A</text>
-          <text x="110" y="135" font-size="10" text-anchor="middle" fill="#333">Veh B</text>
-          <text x="170" y="135" font-size="10" text-anchor="middle" fill="#333">Veh C</text>
-          <text x="240" y="20" font-size="11" fill="#e07a7a">Antes</text>
-          <text x="240" y="36" font-size="11" fill="#6bbf9a">Después</text>
-        </svg>
-        <p style="font-size:13px;margin:8px 0 0;color:#666">Ejemplo ilustrativo: reducción promedio del 30% tras implementación.</p>
+      <div class="left-col">
+        <div class="card-box">
+          <strong>Ventajas</strong>
+          <ul style="list-style-position: inside; text-align:center; margin:12px 0 0;">
+            <li>Reducción de costos por mejor control.</li>
+            <li>Visibilidad por vehículo y por periodo.</li>
+            <li>Informes automáticos y fáciles de interpretar.</li>
+          </ul>
+        </div>
+
+        <h2 style="margin-top:6px;font-size:16px">¿A quién está dirigida?</h2>
+        <p style="max-width:360px;margin:0 10px 0 0;">
+          Empresas de transporte y logística, escuelas de conducción y cualquier organización con flotas vehiculares que busque optimizar costos y controlar el uso de combustible.
+        </p>
+
+        <h2 style="margin-top:12px;font-size:16px">¿Por qué elegir FuelTrack?</h2>
+        <p style="max-width:700px;margin:8px 0 0;line-height:1.6;">
+          FuelTrack ofrece una solución integral para optimizar el control del consumo de combustible dentro de cualquier organización que gestione vehículos. Su plataforma permite seguimiento en tiempo real, reportes automáticos y análisis claros, facilitando una gestión precisa y confiable.
+        </p>
+        <p style="max-width:700px;margin:8px 0 0;line-height:1.6;">
+          Gracias a su interfaz intuitiva, las empresas pueden reducir costos, evitar desperdicios y mejorar la eficiencia operativa. Con FuelTrack, las decisiones se basan en datos sólidos y actualizados, impulsando una operación más eficiente, organizada y sostenible.
+        </p>
       </div>
 
-      <div class="chart">
-        <strong>Tendencia total (litros)</strong>
-        <!-- línea simple -->
-        <svg width="100%" height="140" viewBox="0 0 300 140" preserveAspectRatio="none" style="display:block;margin-top:8px">
-          <polyline points="10,120 50,95 90,82 130,70 170,60 210,48 250,40 290,35" fill="none" stroke="#e07a7a" stroke-width="3" opacity="0.8"/>
-          <polyline points="10,120 50,110 90,106 130,100 170,96 210,90 250,86 290,80" fill="none" stroke="#6bbf9a" stroke-width="3"/>
-          <text x="12" y="18" font-size="11" fill="#e07a7a">Antes</text>
-          <text x="12" y="32" font-size="11" fill="#6bbf9a">Después</text>
-        </svg>
-        <p style="font-size:13px;margin:8px 0 0;color:#666">Gráfica de ejemplo: tendencia de consumo total antes y después.</p>
-      </div>
-    </div>
+     <div class="right-col">
+        <!-- Ahora la imagen se posiciona de forma absoluta fuera del flujo (.top-right-image).
+             En pantallas pequeñas, la media query la vuelve estática y queda dentro del flujo. -->
+        <div class="top-right-image">
+          <img src="iconogasolina.jpeg" alt="Icono gasolina" class="side-image">
+        </div>
 
-    <h2>¿A quién está dirigida?</h2>
-    <p>Empresas de transporte y logística, escuelas de conducción y cualquier organización con flotas vehiculares que busque optimizar costos y controlar el uso de combustible.</p>
+        <div>
+          <h2>Antes / Después — Ahorro estimado</h2>
+          <div class="charts">
+            <div class="chart">
+              <strong>Consumo mensual por vehículo (litros)</strong>
+              <svg width="100%" height="140" viewBox="0 0 300 140" preserveAspectRatio="none" style="display:block;margin-top:8px">
+                <rect x="0" y="0" width="300" height="140" fill="transparent"></rect>
+                <rect x="30" y="40" width="40" height="80" fill="#e07a7a"></rect>
+                <rect x="90" y="25" width="40" height="95" fill="#e07a7a"></rect>
+                <rect x="150" y="55" width="40" height="65" fill="#e07a7a"></rect>
+                <rect x="30" y="70" width="40" height="50" fill="#6bbf9a"></rect>
+                <rect x="90" y="52" width="40" height="68" fill="#6bbf9a"></rect>
+                <rect x="150" y="82" width="40" height="38" fill="#6bbf9a"></rect>
+                <text x="50" y="135" font-size="10" text-anchor="middle" fill="#333">Veh A</text>
+                <text x="110" y="135" font-size="10" text-anchor="middle" fill="#333">Veh B</text>
+                <text x="170" y="135" font-size="10" text-anchor="middle" fill="#333">Veh C</text>
+                <text x="240" y="20" font-size="11" fill="#e07a7a">Antes</text>
+                <text x="240" y="36" font-size="11" fill="#6bbf9a">Después</text>
+              </svg>
+              <p style="font-size:13px;margin:8px 0 0;color:#666">Ejemplo ilustrativo: reducción promedio del 30% tras implementación.</p>
+            </div>
 
-    <h2>Imágenes</h2>
-    <div class="row">
-      <div style="flex:1;min-width:220px">
-        <div class="placeholder-img">Imagen de flota (relleno)</div>
-      </div>
-      <div style="flex:1;min-width:220px">
-        <div class="placeholder-img">Dashboard (relleno)</div>
+            <div class="chart">
+              <strong>Tendencia total (litros)</strong>
+              <svg width="100%" height="140" viewBox="0 0 300 140" preserveAspectRatio="none" style="display:block;margin-top:8px">
+                <polyline points="10,120 50,95 90,82 130,70 170,60 210,48 250,40 290,35" fill="none" stroke="#e07a7a" stroke-width="3" opacity="0.8"/>
+                <polyline points="10,120 50,110 90,106 130,100 170,96 210,90 250,86 290,80" fill="none" stroke="#6bbf9a" stroke-width="3"/>
+                <text x="12" y="18" font-size="11" fill="#e07a7a">Antes</text>
+                <text x="12" y="32" font-size="11" fill="#6bbf9a">Después</text>
+              </svg>
+              <p style="font-size:13px;margin:8px 0 0;color:#666">Gráfica de ejemplo: tendencia de consumo total antes y después.</p>
+            </div>
+          </div>
+        </div>
+      </div> <!-- cierre right-col -->
+
+    </div> <!-- cierre row -->
+
+    <h2 style="margin-top:18px">Ejemplo</h2>
+    <div style="display:flex;justify-content:center;margin-top:10px;">
+      <div style="width:70%;max-width:600px;">
+        <img src="reportemensual.jpeg" alt="Reporte mensual" style="display:block;width:100%;height:auto;border-radius:6px;border:1px solid #eee;box-shadow:0 6px 18px rgba(0,0,0,0.06);">
       </div>
     </div>
 
     <footer>
-      <strong>Contacto:</strong> contacto@fueltrack.app · fueltrack.app · +57 300 000 0000
+      <strong>Contacto:</strong> info.fueltrackcompany@gmail.com · +57 3332529642
     </footer>
   </div>
 </body>
